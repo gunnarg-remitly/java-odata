@@ -49,6 +49,7 @@ import java.util.Map;
 import static com.sdl.odata.JsonConstants.CONTEXT;
 import static com.sdl.odata.JsonConstants.COUNT;
 import static com.sdl.odata.JsonConstants.ID;
+import static com.sdl.odata.JsonConstants.NEXT_LINK;
 import static com.sdl.odata.JsonConstants.TYPE;
 import static com.sdl.odata.JsonConstants.VALUE;
 import static com.sdl.odata.ODataRendererUtils.checkNotNull;
@@ -58,6 +59,7 @@ import static com.sdl.odata.api.edm.model.MetaType.ENTITY;
 import static com.sdl.odata.api.parser.ODataUriUtil.asJavaList;
 import static com.sdl.odata.api.parser.ODataUriUtil.getSimpleExpandPropertyNames;
 import static com.sdl.odata.api.parser.ODataUriUtil.hasCountOption;
+import static com.sdl.odata.api.parser.ODataUriUtil.hasTopOption;
 import static com.sdl.odata.util.edm.EntityDataModelUtil.formatEntityKey;
 import static com.sdl.odata.util.edm.EntityDataModelUtil.getEntityName;
 import static com.sdl.odata.util.edm.EntityDataModelUtil.visitProperties;
@@ -190,6 +192,19 @@ public class JsonWriter {
                 count = (long) countObj;
             }
             jsonGenerator.writeNumberField(COUNT, count);
+        }
+
+        // The delta link MUST only appear on the last page of results. A page of
+        // results MUST NOT have both a delta link and a next link.
+        if (hasTopOption(odataUri)
+                && data instanceof List
+                && meta != null
+                && meta.containsKey("nextLink") && !meta.containsKey("deltaLink")
+        ) {
+            String nextLink;
+            Object nextLinkObj = meta.get("nextLink");
+            nextLink = (String) nextLinkObj;
+            jsonGenerator.writeStringField(NEXT_LINK, nextLink);
         }
 
         if (!(data instanceof List)) {

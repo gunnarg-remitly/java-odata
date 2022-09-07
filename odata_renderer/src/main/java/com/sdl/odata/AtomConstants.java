@@ -87,6 +87,10 @@ public final class AtomConstants {
      */
     public static final String SELF = "self";
     /**
+     * Next.
+     */
+    public static final String NEXT = "next";
+    /**
      * Metadata.
      */
     public static final String METADATA = "metadata";

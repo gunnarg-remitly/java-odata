@@ -45,6 +45,8 @@ public class JsonWriterTest extends WriterTest {
     private static final String EXPECTED_COLLECTIONS_ENTITY_PATH = "/json/CollectionsSample.json";
     private static final String EXPECTED_CUSTOMER_FEED_PATH = "/json/Customers.json";
     private static final String EXPECTED_CUSTOMER_FEED_WITH_COUNT_PATH = "/json/CustomersWithCount.json";
+    private static final String EXPECTED_CUSTOMER_FEED_WITH_NEXT_LINK = "/json/CustomersWithNextLink.json";
+    private static final String EXPECTED_CUSTOMER_FEED_WITH_DELTA_LINK = "/json/CustomersWithDeltaLink.json";
     private static final String EXPECTED_EXPANDED_PROPERTIES_ENTITY_PATH = "/json/ExpandedPropertiesSample.json";
     private static final String EXPANDED_PROPERTIES_NO_LINKS_ENTITY_PATH = "/json/ExpandedPropertiesNoLinksSample.json";
     private static final String EXPECTED_COMPLEX_KEY_ENTITY_PATH = "/json/ComplexKeySample.json";
@@ -107,6 +109,37 @@ public class JsonWriterTest extends WriterTest {
         Map<String, Object> meta = new HashMap<>();
         meta.put("count", 5);
         checkWrittenJsonStream(createCustomersSample(), meta, CUSTOMERS_URL, EXPECTED_CUSTOMER_FEED_WITH_COUNT_PATH);
+    }
+
+    @Test
+    public void testCustomersWithNextLink() throws Exception {
+
+        odataUri = new ODataParserImpl().parseUri(
+                "http://localhost:8080/odata.svc/Customers?$top=5", entityDataModel);
+        Map<String, Object> meta = new HashMap<>();
+        meta.put("nextLink", "http://localhost:8080/odata.svc/Customers?$top=5&$skip=5");
+        checkWrittenJsonStream(createCustomersSample(), meta, CUSTOMERS_URL, EXPECTED_CUSTOMER_FEED_WITH_NEXT_LINK);
+    }
+
+//    @Test
+//    public void testCustomersWithDeltaLink() throws Exception {
+//
+//        odataUri = new ODataParserImpl().parseUri(
+//                "http://localhost:8080/odata.svc/Customers?$top=5", entityDataModel);
+//        Map<String, Object> meta = new HashMap<>();
+//        meta.put("deltaLink", "http://localhost:8080/odata.svc/Customers?$deltatoken=8015");
+//        checkWrittenJsonStream(createCustomersSample(), meta, CUSTOMERS_URL, EXPECTED_CUSTOMER_FEED_WITH_DELTA_LINK);
+//    }
+
+    @Test
+    public void testCustomersWithNextLinkAndDeltaLink() throws Exception {
+
+        odataUri = new ODataParserImpl().parseUri(
+                "http://localhost:8080/odata.svc/Customers?$top=5", entityDataModel);
+        Map<String, Object> meta = new HashMap<>();
+        meta.put("nextLink", "http://localhost:8080/odata.svc/Customers?$top=5&$skip=5");
+        meta.put("deltaLink", "http://localhost:8080/odata.svc/Customers?$deltatoken=8015");
+        checkWrittenJsonStream(createCustomersSample(), meta, CUSTOMERS_URL, EXPECTED_CUSTOMER_FEED_PATH);
     }
 
     @Test

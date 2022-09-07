@@ -222,6 +222,11 @@ object ODataUriUtil {
     }
   }
 
+  def hasTopOption(uri: ODataUri): Boolean = {
+    getQueryOptions(uri).exists(opt => opt.isInstanceOf[TopOption])
+
+  }
+
   /**
    * Builds the 'Context URL' from a given OData URI.
    * The context will be generated for entity set, entity, simple property and complex property (including derived types)

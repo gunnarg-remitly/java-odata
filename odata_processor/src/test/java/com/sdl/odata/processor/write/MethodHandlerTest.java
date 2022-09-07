@@ -36,7 +36,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.MockitoAnnotations.openMocks;
+
 import com.sdl.odata.api.service.ODataRequest.Method;
 import com.sdl.odata.processor.model.ODataAddress;
 import com.sdl.odata.processor.model.ODataMobilePhone;
@@ -56,7 +57,7 @@ public abstract class MethodHandlerTest {
     protected void setup(String entitySetName) throws Exception {
         entitySetOdataURI = createODataUri(SERVICE_ROOT, entitySetName);
         entityOdataURI = createODataUriWithSimpleKeyPredicate(entitySetName);
-        initMocks(ODataWriteProcessorImpl.class);
+        openMocks(ODataWriteProcessorImpl.class);
     }
 
     protected void stubForTesting(Object entity) throws ODataException {

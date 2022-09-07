@@ -231,6 +231,15 @@ public class AtomWriter {
                 metadataWriter.writeCount(meta.get("count"));
             }
 
+            // The delta link MUST only appear on the last page of results. A page
+            // of results MUST NOT have both a delta link and a next link.
+            if (ODataUriUtil.hasTopOption(oDataUri)
+                    && meta != null
+                    && meta.containsKey("nextLink") && !meta.containsKey("delta")
+            ) {
+                metadataWriter.writeNextLink(meta.get("nextLink"));
+            }
+
             metadataWriter.writeFeedId(null, null);
             metadataWriter.writeTitle();
             metadataWriter.writeUpdate(dateTime);
@@ -335,6 +344,14 @@ public class AtomWriter {
         if (ODataUriUtil.hasCountOption(oDataUri) &&
                 meta != null && meta.containsKey("count")) {
             metadataWriter.writeCount(meta.get("count"));
+        }
+        // The delta link MUST only appear on the last page of results. A page of
+        // results MUST NOT have both a delta link and a next link.
+        if (meta != null && meta.containsKey("nextLink") && !meta.containsKey("delta")) {
+            metadataWriter.writeNextLink(meta.get("nextLink"));
+        }
+        if (meta != null && meta.containsKey("deltaLink") && !meta.containsKey("nextLink")) {
+            metadataWriter.writeNextLink(meta.get("deltaLink"));
         }
 
         metadataWriter.writeFeedId(enclosingEntity, property);

@@ -31,6 +31,7 @@ import javax.xml.stream.XMLStreamWriter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 import static com.sdl.odata.AtomConstants.ATOM_AUTHOR;
 import static com.sdl.odata.AtomConstants.ATOM_AUTHOR_ODATA_FRAMEWORK;
 import static com.sdl.odata.AtomConstants.ATOM_CATEGORY;
@@ -45,6 +46,7 @@ import static com.sdl.odata.AtomConstants.EDIT;
 import static com.sdl.odata.AtomConstants.HASH;
 import static com.sdl.odata.AtomConstants.HREF;
 import static com.sdl.odata.AtomConstants.METADATA;
+import static com.sdl.odata.AtomConstants.NEXT;
 import static com.sdl.odata.AtomConstants.ODATA_CONTEXT;
 import static com.sdl.odata.AtomConstants.ODATA_DATA;
 import static com.sdl.odata.AtomConstants.ODATA_SCHEME_NS;
@@ -320,4 +322,19 @@ public class AtomMetadataWriter {
         xmlWriter.writeCharacters(String.valueOf(count));
         xmlWriter.writeEndElement();
     }
+
+    /**
+     * The atom:feed element MAY contain a next link to indicate the presence of
+     * additional entities that belong to the collection.
+     * @param nextLink a string representation of the url that will fetch the next
+     *                 set of results
+     * @throws XMLStreamException
+     */
+    public void writeNextLink(Object nextLink) throws XMLStreamException {
+        xmlWriter.writeStartElement(METADATA, ATOM_LINK, nsConfigurationProvider.getOdataMetadataNs());
+        xmlWriter.writeAttribute(REL, NEXT);
+        xmlWriter.writeAttribute(HREF, (String) nextLink);
+        xmlWriter.writeEndElement();
+    }
+
 }

@@ -40,6 +40,10 @@ public final class JsonConstants {
      */
     public static final String COUNT = "@odata.count";
     /**
+     * Type.
+     */
+    public static final String NEXT_LINK = "@odata.nextLink";
+    /**
      * Value.
      */
     public static final String VALUE = "value";

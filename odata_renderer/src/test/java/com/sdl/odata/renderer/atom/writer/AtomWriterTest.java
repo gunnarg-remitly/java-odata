@@ -49,6 +49,8 @@ public class AtomWriterTest extends WriterTest {
 
     private static final String EXPECTED_CUSTOMER_FEED_PATH = "/xml/Customers.xml";
     private static final String EXPECTED_CUSTOMER_FEED_WITH_COUNT_PATH = "/xml/CustomersWithCount.xml";
+    private static final String EXPECTED_CUSTOMER_FEED_WITH_NEXT_LINK = "/xml/CustomersWithNextLink.xml";
+    private static final String EXPECTED_CUSTOMER_FEED_WITH_DELTA_LINK = "/xml/CustomersWithDeltaLink.xml";
     private static final String EXPECTED_CUSTOMER_FEED_PATH_WRITE = "/xml/CustomersWrite.xml";
 
     private static final String EXPECTED_EXPANDED_PROPERTIES_ENTITY_PATH = "/xml/ExpandedPropertiesSample.xml";
@@ -131,6 +133,31 @@ public class AtomWriterTest extends WriterTest {
         meta.put("count", 5);
         checkWrittenXmlStream(createCustomersSample(), meta, CUSTOMERS_URL,
                 EXPECTED_CUSTOMER_FEED_WITH_COUNT_PATH, false);
+    }
+
+    @Test
+    public void testCustomersWithNextLinkSample() throws Exception {
+
+        odataUri = new ODataParserImpl().parseUri("http://localhost:8080/odata.svc/Customers?$top=5",
+                entityDataModel);
+
+        Map<String, Object> meta = new HashMap<>();
+        meta.put("nextLink", "http://localhost:8080/odata.svc/Customers?$top=5&$skip=5");
+        checkWrittenXmlStream(createCustomersSample(), meta, CUSTOMERS_URL,
+                EXPECTED_CUSTOMER_FEED_WITH_NEXT_LINK, false);
+    }
+
+    @Test
+    public void testCustomersWithDeltaLinkAndNextLinkSample() throws Exception {
+
+        odataUri = new ODataParserImpl().parseUri("http://localhost:8080/odata.svc/Customers?$top=5",
+                entityDataModel);
+
+        Map<String, Object> meta = new HashMap<>();
+        // meta.put("deltaLink", "http://localhost:8080/odata.svc/Customers?$deltatoken=8015");
+        meta.put("nextLink", "http://localhost:8080/odata.svc/Customers?$top=5&$skip=5");
+        checkWrittenXmlStream(createCustomersSample(), meta, CUSTOMERS_URL,
+                EXPECTED_CUSTOMER_FEED_WITH_NEXT_LINK, false);
     }
 
     @Test
