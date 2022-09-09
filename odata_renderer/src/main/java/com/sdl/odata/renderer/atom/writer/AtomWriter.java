@@ -233,8 +233,7 @@ public class AtomWriter {
 
             // The delta link MUST only appear on the last page of results. A page
             // of results MUST NOT have both a delta link and a next link.
-            if (ODataUriUtil.hasTopOption(oDataUri)
-                    && meta != null
+            if (meta != null
                     && meta.containsKey("nextLink") && !meta.containsKey("delta")
             ) {
                 metadataWriter.writeNextLink(meta.get("nextLink"));
@@ -349,9 +348,6 @@ public class AtomWriter {
         // results MUST NOT have both a delta link and a next link.
         if (meta != null && meta.containsKey("nextLink") && !meta.containsKey("delta")) {
             metadataWriter.writeNextLink(meta.get("nextLink"));
-        }
-        if (meta != null && meta.containsKey("deltaLink") && !meta.containsKey("nextLink")) {
-            metadataWriter.writeNextLink(meta.get("deltaLink"));
         }
 
         metadataWriter.writeFeedId(enclosingEntity, property);

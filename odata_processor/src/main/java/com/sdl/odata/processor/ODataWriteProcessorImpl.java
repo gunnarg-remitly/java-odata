@@ -28,8 +28,6 @@ import com.sdl.odata.processor.write.PatchMethodHandler;
 import com.sdl.odata.processor.write.PostMethodHandler;
 import com.sdl.odata.processor.write.PutMethodHandler;
 import com.sdl.odata.processor.write.WriteMethodHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,7 +39,7 @@ import static com.sdl.odata.api.service.ODataResponse.Status.METHOD_NOT_ALLOWED;
  */
 @Component
 public class ODataWriteProcessorImpl implements ODataWriteProcessor {
-    private static final Logger LOG = LoggerFactory.getLogger(ODataWriteProcessorImpl.class);
+    //private Logger LOG = LoggerFactory.getLogger(ODataWriteProcessorImpl.class);
 
     @Autowired
     private DataSourceFactory dataSourceFactory;
@@ -55,18 +53,18 @@ public class ODataWriteProcessorImpl implements ODataWriteProcessor {
             }
             return methodHandler.handleWrite(entity);
         } catch (Exception e) {
-            LOG.error("Couldn't persist or delete given entity '" + entity + "'", e);
+            //LOG.error("Couldn't persist or delete given entity '" + entity + "'", e);
             throw e;
         }
     }
 
     private WriteMethodHandler getHandler(ODataRequestContext requestContext) {
         ODataRequest.Method method = requestContext.getRequest().getMethod();
-        LOG.debug("Requested method is {}", method);
+        //LOG.debug("Requested method is {}", method);
         switch (method) {
             case POST:
                 if (ODataUriUtil.isActionCallUri(requestContext.getUri())) {
-                    LOG.debug("Invoking Action POST method handler");
+                    //LOG.debug("Invoking Action POST method handler");
                     return new ActionPostMethodHandler(requestContext, dataSourceFactory);
                 }
                 return new PostMethodHandler(requestContext, dataSourceFactory);
@@ -77,7 +75,7 @@ public class ODataWriteProcessorImpl implements ODataWriteProcessor {
             case DELETE:
                 return new DeleteMethodHandler(requestContext, dataSourceFactory);
             default:
-                LOG.error("Invalid HTTP method: {}", method);
+                //LOG.error("Invalid HTTP method: {}", method);
         }
         return null;
     }

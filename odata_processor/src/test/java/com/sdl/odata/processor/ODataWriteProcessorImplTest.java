@@ -65,7 +65,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
  * The OData Writer Processor Impl Test.
@@ -96,7 +95,7 @@ public class ODataWriteProcessorImplTest {
                 .addClass(ODataAddress.class)
                 .addClass(ODataMobilePhone.class)
                 .buildEntityDataModel();
-        initMocks(ODataWriteProcessorImpl.class);
+        //openMocks(ODataWriteProcessorImpl.class);
 
         entityType = entity.getClass().getSimpleName();
         EdmEntity annotation = entity.getClass().getAnnotation(EdmEntity.class);

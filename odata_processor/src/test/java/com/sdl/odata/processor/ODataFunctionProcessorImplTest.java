@@ -52,7 +52,6 @@ import java.util.stream.Stream;
 import static com.sdl.odata.api.service.ODataRequest.Method.GET;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.MockitoAnnotations.openMocks;
 
 /**
  * Unit test for {@link ODataFunctionProcessorImpl}.
@@ -81,7 +80,7 @@ public class ODataFunctionProcessorImplTest {
                 .addClass(NullResultFunctionSample.class)
                 .addClass(NoInitFunctionSample.class)
                 .buildEntityDataModel();
-        openMocks(ODataFunctionProcessorImpl.class);
+        //openMocks(ODataFunctionProcessorImpl.class);
     }
 
     @Test

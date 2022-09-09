@@ -59,7 +59,6 @@ import static com.sdl.odata.api.edm.model.MetaType.ENTITY;
 import static com.sdl.odata.api.parser.ODataUriUtil.asJavaList;
 import static com.sdl.odata.api.parser.ODataUriUtil.getSimpleExpandPropertyNames;
 import static com.sdl.odata.api.parser.ODataUriUtil.hasCountOption;
-import static com.sdl.odata.api.parser.ODataUriUtil.hasTopOption;
 import static com.sdl.odata.util.edm.EntityDataModelUtil.formatEntityKey;
 import static com.sdl.odata.util.edm.EntityDataModelUtil.getEntityName;
 import static com.sdl.odata.util.edm.EntityDataModelUtil.visitProperties;
@@ -196,9 +195,7 @@ public class JsonWriter {
 
         // The delta link MUST only appear on the last page of results. A page of
         // results MUST NOT have both a delta link and a next link.
-        if (hasTopOption(odataUri)
-                && data instanceof List
-                && meta != null
+        if (meta != null
                 && meta.containsKey("nextLink") && !meta.containsKey("deltaLink")
         ) {
             String nextLink;

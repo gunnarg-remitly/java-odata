@@ -24,7 +24,6 @@ import com.sdl.odata.api.processor.datasource.DataSource;
 import com.sdl.odata.api.processor.datasource.factory.DataSourceFactory;
 import com.sdl.odata.api.service.ODataRequestContext;
 import com.sdl.odata.edm.factory.annotations.AnnotationEntityDataModelFactory;
-import com.sdl.odata.processor.ODataWriteProcessorImpl;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 
@@ -36,7 +35,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.openMocks;
 
 import com.sdl.odata.api.service.ODataRequest.Method;
 import com.sdl.odata.processor.model.ODataAddress;
@@ -44,9 +42,11 @@ import com.sdl.odata.processor.model.ODataMobilePhone;
 import com.sdl.odata.processor.model.ODataPerson;
 import com.sdl.odata.processor.model.ODataPersonNamedKey;
 
+
 /**
  *
  */
+
 public abstract class MethodHandlerTest {
     protected DataSource dataSourceMock = mock(DataSource.class);
     protected DataSourceFactory dataSourceFactoryMock = mock(DataSourceFactory.class);
@@ -57,7 +57,7 @@ public abstract class MethodHandlerTest {
     protected void setup(String entitySetName) throws Exception {
         entitySetOdataURI = createODataUri(SERVICE_ROOT, entitySetName);
         entityOdataURI = createODataUriWithSimpleKeyPredicate(entitySetName);
-        openMocks(ODataWriteProcessorImpl.class);
+        //openMocks(ODataWriteProcessorImpl.class);
     }
 
     protected void stubForTesting(Object entity) throws ODataException {

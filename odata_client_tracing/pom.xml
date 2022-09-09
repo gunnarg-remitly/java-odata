@@ -19,7 +19,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.sdl</groupId>
+        <groupId>com.remitly</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -37,11 +37,11 @@
     <dependencies>
         <!-- Internal OData dependencies -->
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_client_api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_client</artifactId>
             <type>test-jar</type>
             <scope>test</scope>

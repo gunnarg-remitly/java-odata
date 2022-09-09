@@ -21,7 +21,7 @@
 
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.sdl</groupId>
+        <groupId>com.remitly</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
 
@@ -39,7 +39,7 @@
             <artifactId>scala-parser-combinators_2.12</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_api</artifactId>
         </dependency>
         <dependency>
@@ -53,12 +53,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_edm</artifactId>
             <scope>test</scope>
         </dependency>

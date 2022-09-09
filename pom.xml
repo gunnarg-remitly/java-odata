@@ -19,16 +19,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sdl</groupId>
+    <groupId>com.remitly</groupId>
     <artifactId>odata</artifactId>
     <version>2.10-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Tridion OData v4 Framework</name>
-    <description>Tridion OData v4 Framework</description>
+    <name>Tridion OData v4 Framework fork</name>
+    <description>Tridion OData v4 Framework fork</description>
     <url>https://www.tridion.com</url>
     <inceptionYear>2014</inceptionYear>
+    <distributionManagement>
+        <repository>
+            <id>remitly-release</id>
+            <name>Remitly Release Repository</name>
+            <url>s3://forgedeploy/maven/release</url>
+        </repository>
 
+        <snapshotRepository>
+            <id>remitly-snapshot</id>
+            <name>Remitly Snapshot Repository</name>
+            <url>s3://forgedeploy/maven/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
     <modules>
         <module>odata_api</module>
         <module>odata_client_api</module>
@@ -67,12 +79,18 @@
             <organization>RWS Group for and on behalf of its affiliates and subsidiaries</organization>
             <organizationUrl>http://www.tridion.com</organizationUrl>
         </developer>
+        <developer>
+            <name>Gunnar Gissel</name>
+            <email>gunnarg@remitly.com</email>
+            <organization>Remitly</organization>
+            <organizationUrl>http://www.remitly.com</organizationUrl>
+        </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:sdl/odata.git</connection>
-        <developerConnection>scm:git:git@github.com:sdl/odata.git</developerConnection>
-        <url>git@github.com:sdl/odata.git</url>
+        <connection>scm:git:git@github.com:remitly/odata-lib.git</connection>
+        <developerConnection>scm:git:git@github.com:remitly/odata-lib.git</developerConnection>
+        <url>git@github.com:remitly/odata-lib.git</url>
         <tag>release/2.10/2.10.8</tag>
     </scm>
 
@@ -337,62 +355,62 @@
 
             <!-- OData dependencies -->
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_client_api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_edm</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_parser</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_processor</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_renderer</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_controller</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_webservice</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sdl</groupId>
+                <groupId>com.remitly</groupId>
                 <artifactId>odata_client</artifactId>
                 <version>${project.version}</version>
                 <type>test-jar</type>
@@ -424,6 +442,13 @@
     </dependencies>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -471,7 +496,7 @@
                     <version>2.9.0</version>
                     <configuration>
                         <includes>
-                            <include>com.sdl:*</include>
+                            <include>com.remitly:*</include>
                         </includes>
                     </configuration>
                 </plugin>
@@ -827,17 +852,9 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
+
                 </plugins>
+
             </build>
         </profile>
         <profile>

@@ -21,7 +21,7 @@
 
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.sdl</groupId>
+        <groupId>com.remitly</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
 
@@ -36,23 +36,23 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_client_api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_renderer</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_parser</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_edm</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sdl</groupId>
+            <groupId>com.remitly</groupId>
             <artifactId>odata_test</artifactId>
             <scope>test</scope>
         </dependency>
