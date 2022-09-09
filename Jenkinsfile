@@ -18,14 +18,14 @@ pipeline {
         stage("On Pull Request") {
             when {
                 not {
-                    branch "main"
+                    branch "deploy"
                 }
             }
 
             stages {
                 stage("Build") {
                     steps {
-                        sh "mvn package"
+                        sh "opctl run build"
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
             stages {
                 stage("deploy to maven") {
                     steps {
-                        sh "mvn deploy"
+                        sh "opctl run publish"
                     }
                 }
             }

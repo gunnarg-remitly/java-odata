@@ -1,0 +1,25 @@
+name: build
+description: Builds odata-lib
+
+inputs:
+  github:
+    object:
+      constraints:
+        properties:
+          accessToken:
+            minLength: 1
+            type: string
+            writeOnly: true
+          username:
+            minLength: 1
+            type: string
+        required: [accessToken, username]
+      description: Creds for GitHub.
+
+run:
+  container:
+    image: { ref: "maven:3.8.6-amazoncorretto-18" }
+    cmd: [mvn, publish]
+    dirs:
+      /src: $(../..)
+    workDir: /src
