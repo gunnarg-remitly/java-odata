@@ -31,9 +31,9 @@ pipeline {
             }
         }
 
-        stage("On Merge to Main") {
+        stage("On Merge to deploy branch") {
             when {
-                branch "main"
+                branch "deploy"
             }
 
             stages {
