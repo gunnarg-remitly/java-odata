@@ -21,7 +21,7 @@
 
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.remitly</groupId>
+        <groupId>com.github.gunnarg-remitly.java-odata</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
 
@@ -39,7 +39,7 @@
             <artifactId>scala-parser-combinators_2.12</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_api</artifactId>
         </dependency>
         <dependency>
@@ -53,12 +53,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_edm</artifactId>
             <scope>test</scope>
         </dependency>

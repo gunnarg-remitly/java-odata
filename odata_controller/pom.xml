@@ -21,7 +21,7 @@
 
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.remitly</groupId>
+        <groupId>com.github.gunnarg-remitly.java-odata</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
 
@@ -37,7 +37,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_common</artifactId>
         </dependency>
         <dependency>

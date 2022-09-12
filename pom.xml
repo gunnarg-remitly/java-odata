@@ -342,62 +342,62 @@
 
             <!-- OData dependencies -->
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_client_api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_edm</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_parser</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_processor</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_renderer</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_controller</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_webservice</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.remitly</groupId>
+                <groupId>com.github.gunnarg-remitly.java-odata</groupId>
                 <artifactId>odata_client</artifactId>
                 <version>${project.version}</version>
                 <type>test-jar</type>
@@ -483,7 +483,7 @@
                     <version>2.9.0</version>
                     <configuration>
                         <includes>
-                            <include>com.remitly:*</include>
+                            <include>com.github.gunnarg-remitly.java-odata:*</include>
                         </includes>
                     </configuration>
                 </plugin>

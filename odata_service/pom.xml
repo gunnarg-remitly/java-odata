@@ -21,7 +21,7 @@
 
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.remitly</groupId>
+        <groupId>com.github.gunnarg-remitly.java-odata</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
 
@@ -36,19 +36,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_renderer</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_edm</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_parser</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_processor</artifactId>
         </dependency>
         <dependency>

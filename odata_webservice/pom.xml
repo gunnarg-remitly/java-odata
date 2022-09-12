@@ -21,7 +21,7 @@
 
     <parent>
         <artifactId>odata</artifactId>
-        <groupId>com.remitly</groupId>
+        <groupId>com.github.gunnarg-remitly.java-odata</groupId>
         <version>2.10-SNAPSHOT</version>
     </parent>
 
@@ -36,7 +36,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.remitly</groupId>
+            <groupId>com.github.gunnarg-remitly.java-odata</groupId>
             <artifactId>odata_controller</artifactId>
         </dependency>
         <dependency>
@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.remitly.odata.container.ODataWinServiceContainer</mainClass>
+                            <mainClass>com.github.gunnarg-remitly.java-odata.odata.container.ODataWinServiceContainer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
