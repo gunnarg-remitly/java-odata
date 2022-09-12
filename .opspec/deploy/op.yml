@@ -2,6 +2,9 @@ name: build
 description: Builds odata-lib
 
 inputs:
+  appDir:
+    dir:
+      default: .
   github:
     object:
       constraints:
@@ -15,11 +18,16 @@ inputs:
             type: string
         required: [accessToken, username]
       description: Creds for GitHub.
+  HOME:
+    dir:
+      description: Home directory of caller; used to access aws config
 
 run:
   container:
     image: { ref: "maven:3.8.6-amazoncorretto-18" }
-    cmd: [mvn, publish]
+    cmd: [mvn, deploy]
     dirs:
-      /src: $(../..)
+      /src: $(appDir)
+      /root/.aws: $(HOME/.aws)
+      /root/.m2: $(HOME/.m2)
     workDir: /src

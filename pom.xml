@@ -19,7 +19,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.remitly</groupId>
+    <groupId>com.github.gunnarg-remitly.java-odata</groupId>
     <artifactId>odata</artifactId>
     <version>2.10-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -28,19 +28,6 @@
     <description>Tridion OData v4 Framework fork</description>
     <url>https://www.tridion.com</url>
     <inceptionYear>2014</inceptionYear>
-    <distributionManagement>
-        <repository>
-            <id>remitly-release</id>
-            <name>Remitly Release Repository</name>
-            <url>s3://forgedeploy/maven/release</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>remitly-snapshot</id>
-            <name>Remitly Snapshot Repository</name>
-            <url>s3://forgedeploy/maven/snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
     <modules>
         <module>odata_api</module>
         <module>odata_client_api</module>
