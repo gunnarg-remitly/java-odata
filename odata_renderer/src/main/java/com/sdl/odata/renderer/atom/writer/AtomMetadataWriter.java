@@ -333,6 +333,7 @@ public class AtomMetadataWriter {
     public void writeNextLink(Object nextLink) throws XMLStreamException {
         xmlWriter.writeStartElement(METADATA, ATOM_LINK, nsConfigurationProvider.getOdataMetadataNs());
         xmlWriter.writeAttribute(REL, NEXT);
+        xmlWriter.writeCharacters();
         xmlWriter.writeAttribute(HREF, (String) nextLink);
         xmlWriter.writeEndElement();
     }

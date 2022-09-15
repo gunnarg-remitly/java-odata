@@ -62,6 +62,8 @@ trait QueryOperation {
   def where(criteria: Criteria): CriteriaFilterOperation = CriteriaFilterOperation(this, criteria)
 }
 
+case class SkipToken(@BeanProperty source: QueryOperation, @BeanProperty token: String) extends FilterOperation
+
 /**
  * Select operation. Selects entities from a specified entity set.
  * 
@@ -155,6 +157,13 @@ case class SelectByKeyOperation(@BeanProperty source: QueryOperation, @BeanPrope
   extends FilterOperation {
   def getKeyAsJava: java.util.Map[String, Any] = key.asJava
 }
+
+/**
+ * Skip token operation.  A skip token operation is a filter operation that skips some internally knowable number of elements, based on the token.
+ * @param source The source operation.
+ * @param token The token that is used to determine how many elements to skip.
+ */
+case class SkipTokenOperation(@BeanProperty source: QueryOperation, @BeanProperty token: String) extends FilterOperation
 
 /**
  * Skip operation. A skip operation is a filter operation that skips the first N elements of the source query operation.

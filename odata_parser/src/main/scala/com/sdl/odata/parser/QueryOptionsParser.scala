@@ -152,7 +152,7 @@ trait QueryOptionsParser extends RegexParsers {
     "(" ~> rep1sep(expandOption(contextTypeName), ";") <~ ")"
 
   def expandRefOption(contextTypeName: String): Parser[QueryOption] =
-    expandCountOption(contextTypeName) | orderby(contextTypeName) | skip | top | inlinecount
+    expandCountOption(contextTypeName) | orderby(contextTypeName) | skip | top | inlinecount | skiptoken
 
   def expandRefOptions(contextTypeName: String): Parser[List[QueryOption]] =
     "(" ~> rep1sep(expandRefOption(contextTypeName), ";") <~ ")"
@@ -189,6 +189,12 @@ trait QueryOptionsParser extends RegexParsers {
 
   def skip: Parser[SkipOption] = ("$skip=" ~> """\d+""".r ^^ { case s => SkipOption(s.toInt) })
     .withFailureMessage("The URI contains an incorrectly specified $skip option")
+
+  // String consisting of one or more qchar-NO-AMP
+  def skiptoken: Parser[SkipTokenOption] =
+    ("$skiptoken=" ~> """([A-Za-z0-9\-\._~!\(\)\*\+,;:@/\?\$'=])+""".r ^^ {
+      case s => SkipTokenOption(s)
+    }).withFailureMessage("asdfasdfasdf")
 
   def top: Parser[TopOption] = ("$top=" ~> """\d+""".r ^^ { case s => TopOption(s.toInt) })
     .withFailureMessage("The URI contains an incorrectly specified $top option")
@@ -301,10 +307,6 @@ trait QueryOptionsParser extends RegexParsers {
   def qualifiedActionName: Parser[String] = failure("Actions are not supported")
 
   def qualifiedFunctionName: Parser[(String, List[String])] = failure("Functions are not supported")
-
-  // String consisting of one or more qchar-NO-AMP
-  def skiptoken: Parser[SkipTokenOption] =
-  "$skiptoken=" ~> """([A-Za-z0-9\-\._~!\(\)\*\+,;:@/\?\$'=])+""".r ^^ SkipTokenOption
 
   def aliasAndValue(contextTypeName: String): Parser[AliasAndValueOption] =
     "@" ~> odataIdentifier ~ ("=" ~> commonExpr(contextTypeName)) ^^ {

@@ -349,6 +349,18 @@ class QueryOptionsParsersTest extends FunSuite with ParserTestHelpers {
 
   }
 
+  test("$skiptoken option") {
+    implicit val p = parser.odataUri
+
+    val serviceRoot = "http://hello/odata.svc"
+    val relativeUri = "/Customers?$skiptoken=L0N1c3RvbWVycz8kc2tpcD01MA=="
+
+    testSuccess(serviceRoot + relativeUri, ODataUri(
+      serviceRoot,
+      ResourcePathUri(EntitySetPath("Customers", None),
+        List(SkipTokenOption("L0N1c3RvbWVycz8kc2tpcD01MA==")))))
+  }
+
   test("alias + implicit value") {
     implicit val p = parser.odataUri
 

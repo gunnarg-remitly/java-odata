@@ -151,6 +151,21 @@ class QueryModelBuilderTest extends FunSuite {
     assert(op2.entitySetName === "Persons")
   }
 
+  test("/Persons?$skipToken=L0N1c3RvbWVycz8kc2tpcD01MA==") {
+    val uri = ODataUri("", ResourcePathUri(EntitySetPath("Persons", None), List(SkipTokenOption("L0N1c3RvbWVycz8kc2tpcD01MA=="))))
+
+    val query = new QueryModelBuilder(entityDataModel).build(new ODataRequestContext(null, uri, entityDataModel))
+
+    assert(query.operation.isInstanceOf[SkipTokenOperation])
+    val op1 = query.operation.asInstanceOf[SkipTokenOperation]
+
+    assert(op1.token === "L0N1c3RvbWVycz8kc2tpcD01MA==")
+
+    assert(op1.source.isInstanceOf[SelectOperation])
+    val op2 = op1.source.asInstanceOf[SelectOperation]
+    assert(op2.entitySetName === "Persons")
+  }
+
   test("/Persons?$skip=20") {
     val uri = ODataUri("", ResourcePathUri(EntitySetPath("Persons", None), List(SkipOption(20))))
 

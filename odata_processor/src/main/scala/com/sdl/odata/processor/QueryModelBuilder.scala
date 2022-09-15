@@ -155,11 +155,12 @@ class QueryModelBuilder(entityDataModel: EntityDataModel) {
     case SkipOption(count) => SkipOperation(source, count)
     case CountOption(trueFalse) => CountOperation(source, trueFalse)
     case ExpandOption(items) => applyExpandOption(source, items)
-    case OrderByOption(items) => applyOrderByOption(source, items)
+    case SkipTokenOption(token) => SkipTokenOperation(source, token)
 
     // SelectOption
-    case SelectOption(items) => applySelectOption(source, items)
+    case OrderByOption(items) => applyOrderByOption(source, items)
 
+    case SelectOption(items) => applySelectOption(source, items)
     case FormatOption(_) => source
     case AliasAndValueOption(_, _) => source
     case CustomOption(_, _) => source
